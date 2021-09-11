@@ -1,4 +1,4 @@
-Lecture material [Notion](https://www.notion.so/1-7bcde8436a3d484f871fa94370bec195#81dc7445d91e4f528d0aa1469b569b39)
+# Lecture material [Notion](https://www.notion.so/1-7bcde8436a3d484f871fa94370bec195#81dc7445d91e4f528d0aa1469b569b39)
 
 ## Week 01
 
@@ -14,7 +14,9 @@ Lecture material [Notion](https://www.notion.so/1-7bcde8436a3d484f871fa94370bec1
 
 - cmd -> npm install -g expo-cli
 
-  : Text
+---
+
+: Text
 
 - `( backtick ) : Change Line
 
@@ -22,13 +24,17 @@ Lecture material [Notion](https://www.notion.so/1-7bcde8436a3d484f871fa94370bec1
 
 - Text numberOfLines={n} : Show the "n" line. Short for words.
 
-  : Button
+---
+
+: Button
 
 - TouchableOpcity -> Button
 
 - Alert -> Pop-up
 
-  : Image [Official document]:https://docs.expo.io/versions/latest/react-native/image/
+---
+
+: Image [Official document]:https://docs.expo.io/versions/latest/react-native/image/
 
 - Img Load -> import favicon from "./assets/filename.png";
 
@@ -36,7 +42,9 @@ Lecture material [Notion](https://www.notion.so/1-7bcde8436a3d484f871fa94370bec1
 
 - resizeMode -> { repeat, cover}
 
-  : flex ( = layout_weight )
+---
+
+: flex ( = layout_weight )
 
 - View Area
 
@@ -48,7 +56,9 @@ Lecture material [Notion](https://www.notion.so/1-7bcde8436a3d484f871fa94370bec1
 
 - alignSelf -> Opposite to the justifyContent
 
-  : Component, State, Props, useEffect
+---
+
+: Component, State, Props, useEffect
 
 - Component : A part of the screen made using designated elements
 
