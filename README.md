@@ -36,4 +36,25 @@ Sparta Notion [Notion]:https://www.notion.so/1-7bcde8436a3d484f871fa94370bec195#
 
 - resizeMode -> { repeat, cover}
 
-  : StyleSheet
+    : flex ( = layout_weight )
+
+- View Area
+
+- flexDirection -> ( = orientation ), flexDirection : 'row' or 'column'
+
+- justifyContent -> left(x), right(x) => flex-start, flex-end, center
+
+- alignItems -> Opposite to the flexDirection 
+
+- alignSelf -> Opposite to the justifyContent
+
+    : Component, State, Props, useEffect
+
+- Component : A part of the screen made using designated elements
+
+- State : The only way to maintain and manage data in a component == just data to use
+
+- Props : The way data is transferred from the upper component to the lower component == just data transfer
+
+- useEffect : When the components are drawn on the screen, where the functions that need to be executed for the first time are collected
+
