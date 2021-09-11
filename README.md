@@ -1,4 +1,4 @@
-Sparta Notion [Notion]:https://www.notion.so/1-7bcde8436a3d484f871fa94370bec195#81dc7445d91e4f528d0aa1469b569b39
+Lecture material [Notion]:[https://www.notion.so/1-7bcde8436a3d484f871fa94370bec195#81dc7445d91e4f528d0aa1469b569b39]
 
 ## Week 01
 
@@ -36,7 +36,7 @@ Sparta Notion [Notion]:https://www.notion.so/1-7bcde8436a3d484f871fa94370bec195#
 
 - resizeMode -> { repeat, cover}
 
-    : flex ( = layout_weight )
+  : flex ( = layout_weight )
 
 - View Area
 
@@ -44,11 +44,11 @@ Sparta Notion [Notion]:https://www.notion.so/1-7bcde8436a3d484f871fa94370bec195#
 
 - justifyContent -> left(x), right(x) => flex-start, flex-end, center
 
-- alignItems -> Opposite to the flexDirection 
+- alignItems -> Opposite to the flexDirection
 
 - alignSelf -> Opposite to the justifyContent
 
-    : Component, State, Props, useEffect
+  : Component, State, Props, useEffect
 
 - Component : A part of the screen made using designated elements
 
@@ -57,4 +57,3 @@ Sparta Notion [Notion]:https://www.notion.so/1-7bcde8436a3d484f871fa94370bec195#
 - Props : The way data is transferred from the upper component to the lower component == just data transfer
 
 - useEffect : When the components are drawn on the screen, where the functions that need to be executed for the first time are collected
-
