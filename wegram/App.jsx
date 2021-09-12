@@ -1,46 +1,42 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
+import PlusButton from './components/PlusButton';
+import MinusButton from './components/MinusButton';
 
 export default function App() {
+  const [state, setState] = useState(0);
+
+  const Minus = () => {
+    console.log('마이너스');
+    setState(state - 1);
+  };
+
+  const Plus = () => {
+    setState(state + 1);
+  };
+
   return (
-    <View style={styles.container}>
-      <View style={styles.containerOne}></View>
-      <View style={styles.containerTwo}>
-        <View style={styles.innerOne}></View>
-        <View style={styles.innerTwo}>
-          <View style={styles.content}></View>
-        </View>
+    <View style={styles.contianer}>
+      <Text style={styles.count}>카운터 : {state}</Text>
+      <View style={styles.buttonContainer}>
+        <PlusButton Plus={Plus} />
+        <MinusButton Minus={Minus} />
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  contianer: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  containerOne: {
-    flex: 1,
-    backgroundColor: 'red',
+  count: {
+    fontSize: 20,
   },
-  containerTwo: {
-    flex: 2,
+  buttonContainer: {
+    marginTop: 50,
     flexDirection: 'row',
-    backgroundColor: 'yellow',
-  },
-  innerOne: {
-    flex: 1,
-    backgroundColor: 'blue',
-  },
-  innerTwo: {
-    flex: 4,
-    backgroundColor: 'orange',
-    alignItems: 'flex-end',
-  },
-  content: {
-    width: 50,
-    height: 50,
-    backgroundColor: '#000',
-    alignSelf: 'center',
   },
 });

@@ -63,7 +63,28 @@
 - Component : A part of the screen made using designated elements
 
 - State : The only way to maintain and manage data in a component == just data to use
+  -> UI = components(state) # Rerendering
 
 - Props : The way data is transferred from the upper component to the lower component == just data transfer
 
 - useEffect : When the components are drawn on the screen, where the functions that need to be executed for the first time are collected
+
+'''
+useEffect(()=>{
+
+}, [])
+
+1. Ready SingleInPage
+2. Set useState's List
+3. Load useState's List
+4. Start useState
+5. Manage data.json
+6. Check to change State -> Reload
+
+'''
+
+---
+
+    : ScrollView
+
+- flex option needs contentContainerStyle
