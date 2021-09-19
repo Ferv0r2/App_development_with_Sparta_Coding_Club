@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-export default function SignInPage() {
+export default function Loading() {
   return (
     <View>
       <Text>SignInPage</Text>
