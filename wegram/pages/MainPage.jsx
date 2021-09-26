@@ -17,6 +17,12 @@ import * as Animatable from 'react-native-animatable';
 
 const data = require('../data.json');
 export default function MainPage({ navigation }) {
+  useEffect(() => {
+    navigation.addListener('beforeRemove', (e) => {
+      e.preventDefault();
+    });
+  });
+
   return (
     <Container>
       <HeaderComponent />
@@ -24,7 +30,7 @@ export default function MainPage({ navigation }) {
         <Animatable.View
           animation="pulse"
           easing="ease-out"
-          iterationCount={'infinite'}
+          iterationCount={3}
           direction="alternate"
         >
           <Grid style={styles.banner}>
