@@ -1,11 +1,5 @@
-import React from 'react';
-import {
-  StyleSheet,
-  Image,
-  View,
-  Dimensions,
-  ActivityIndicator,
-} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Image, View } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import {
   Container,
@@ -16,71 +10,73 @@ import {
   Right,
   Text,
   Button,
-  Thumbnail,
 } from 'native-base';
 import CardComponent from '../components/CardComponent';
-import ImageComponent from '../components/ImageComponent';
 import HeaderComponent from '../components/HeaderComponent';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-const my = require('../assets/my.png');
+import * as Animatable from 'react-native-animatable';
+import { getData } from '../config/firebaseFunctions';
 const data = require('../data.json');
-const imageWidth = Dimensions.get('window').width / 3;
-import { logout } from '../config/firebaseFunctions';
+export default function MainPage({ navigation }) {
+  const [data, setData] = useState([]);
 
-export default function MyPage({ navigation }) {
-  const logoutFunc = () => {
-    logout(navigation);
+  useEffect(() => {
+    navigation.addListener('beforeRemove', (e) => {
+      e.preventDefault();
+    });
+    readyData();
+  }, []);
+  const readyData = async () => {
+    const data = await getData();
+    setData(data);
   };
+
+  console.log(data);
   return (
     <Container>
       <HeaderComponent />
       <Content>
-        <Thumbnail large source={my} style={styles.thumbnail} />
-        <Text style={styles.myTitle}>스파르타코딩 클럽</Text>
-        <Text style={{ alignSelf: 'center' }}>gunhee@spartacoding.co.kr</Text>
-        <TouchableOpacity style={{ marginTop: 20 }} onPress={logoutFunc}>
-          <Text style={styles.logout}>로그아웃</Text>
-        </TouchableOpacity>
-        <Grid style={{ marginTop: 30 }}>
-          <Col size={3} style={{ alignItems: 'center' }}>
-            <Text style={styles.category}>작성한 글</Text>
-            <Text style={styles.categoryContent}>7</Text>
-          </Col>
-          <Col size={3} style={{ alignItems: 'center' }}>
-            <Text style={styles.category}>작성한 댓글</Text>
-            <Text style={styles.categoryContent}>21</Text>
-          </Col>
-          <Col size={3} style={{ alignItems: 'center' }}>
-            <Text style={styles.category}>방문 횟수</Text>
-            <Text style={styles.categoryContent}>321</Text>
-          </Col>
+        <Animatable.View
+          animation="pulse"
+          easing="ease-out"
+          iterationCount={3}
+          direction="alternate"
+        >
+          <Grid style={styles.banner}>
+            <Col size={1} style={{ padding: 20 }}>
+              <Icon name="paper-plane" style={{ color: 'deeppink' }} />
+            </Col>
+            <Col size={6} style={{ padding: 15 }}>
+              <Text>이야기 하고 싶은 친구들에게</Text>
+              <Text style={{ fontWeight: '700' }}>wegram을 전하세요</Text>
+            </Col>
+          </Grid>
+        </Animatable.View>
+
+        <Grid style={{ padding: 20 }}>
+          <Text style={{ color: 'grey' }}>FROM THE DIARY</Text>
         </Grid>
-        <Grid style={styles.imageWrap}>
-          {data.diary.map((content, i) => {
-            return <ImageComponent image={content.image} key={i} />;
+        <View style={{ marginTop: -20 }}>
+          {data.map((content, i) => {
+            return (
+              <CardComponent
+                content={content}
+                key={i}
+                navigation={navigation}
+              />
+            );
           })}
-        </Grid>
+        </View>
       </Content>
     </Container>
   );
 }
 
 const styles = StyleSheet.create({
-  thumbnail: { alignSelf: 'center', marginTop: 30 },
-  myTitle: {
-    alignSelf: 'center',
-    marginTop: 10,
-    fontSize: 20,
-    fontWeight: '700',
-  },
-  category: { fontWeight: '700' },
-  categoryContent: { color: 'deeppink', fontWeight: '700' },
-  imageWrap: { flexWrap: 'wrap', marginTop: 20 },
-  logout: {
-    alignSelf: 'center',
-    padding: 10,
-    borderColor: 'grey',
-    borderWidth: 1,
+  banner: {
+    backgroundColor: '#F6F6F6',
+    height: 70,
     borderRadius: 10,
+    width: '90%',
+    alignSelf: 'center',
   },
 });
