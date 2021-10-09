@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, Alert } from 'react-native';
 import {
   Container,
   Header,
@@ -18,7 +18,12 @@ import {
 import ImageBlurLoading from 'react-native-image-blur-loading';
 import CommentComponet from '../components/CommentComponent';
 const my = require('../assets/my.png');
+import { addComment } from '../config/firebaseFunctions';
+
+import * as firebase from 'firebase';
+import 'firebase/firestore';
 export default function DetailPage({ navigation, route }) {
+  const [commentInput, setCommentInput] = useState('');
   useEffect(() => {
     navigation.setOptions({
       title: '디테일페이지',
@@ -31,9 +36,24 @@ export default function DetailPage({ navigation, route }) {
       headerBackTitleVisible: false,
     });
   }, []);
-  console.log('ROUTE');
-  console.log(route);
+
   const content = route.params.content;
+  const commentFunc = async () => {
+    console.log(commentInput);
+    let date = new Date();
+    let getTime = date.getTime();
+    const currentUser = firebase.auth().currentUser;
+    let comment = {
+      date: getTime,
+      comment: commentInput,
+      uid: currentUser.uid,
+    };
+
+    let result = await addComment(comment);
+    if (result) {
+      Alert.alert('댓글이 정상적으로 저장되었습니다!');
+    }
+  };
   return (
     <Container>
       <Content
@@ -74,8 +94,20 @@ export default function DetailPage({ navigation, route }) {
         </Text>
 
         <Item style={{ marginTop: 100 }}>
-          <Input placeholder="한마디 부탁해요~" />
-          <Icon active name="paper-plane" />
+          <Input
+            placeholder="한마디 부탁해요~"
+            value={commentInput}
+            onChangeText={(text) => {
+              setCommentInput(text);
+            }}
+          />
+          <Icon
+            active
+            name="paper-plane"
+            onPress={() => {
+              commentFunc();
+            }}
+          />
         </Item>
         <List>
           <CommentComponet />
